@@ -1,0 +1,56 @@
+export ZSH="$HOME/.oh-my-zsh"
+
+ZSH_THEME="robbyrussell"
+
+plugins=(git npm yarn aws colored-man-pages colorize command-not-found common-aliases docker docker-compose kubectl zsh-autosuggestions history zsh-syntax-highlighting emoji pip copybuffer dotenv)
+
+source $ZSH/oh-my-zsh.sh
+
+# Preferred editor for local and remote sessions
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='nvim'
+fi
+
+export MANPAGER='nvim +Man!'
+export KUBE_EDITOR="nvim"
+export EDITOR="nvim"
+
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+
+# My aliases
+alias k="kubectl"
+alias kgp="kubectl get pods"
+alias ktx="kubectx"
+alias kns="kubens"
+alias do="docker"
+alias cat="bat"
+alias find="fd"
+alias ls='eza -lh --group-directories-first --icons=auto'
+alias cd="zd"
+alias ff="fzf --preview 'bat --style=numbers --color=always {}'"
+
+eval "$(zoxide init zsh)"
+zd() {
+  if [ $# -eq 0 ]; then
+    builtin cd ~ && return
+  elif [ -d "$1" ]; then
+    builtin cd "$1"
+  else
+    z "$@" && printf "\U000F17A9 " && pwd || echo "Error: Directory not found"
+  fi
+}
+
+v() { if [ "$#" -eq 0 ]; then nvim .; else nvim "$@"; fi; }
+
+# fnm
+FNM_PATH="/opt/homebrew/opt/fnm/bin"
+if [ -d "$FNM_PATH" ]; then
+  eval "`fnm env`"
+fi
+
+theme() { sh ~/.local/bin/theme-toggle.sh; }
+
+# GPG
+export GPG_TTY=$(tty)

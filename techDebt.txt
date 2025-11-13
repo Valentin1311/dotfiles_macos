@@ -1,0 +1,2 @@
+sfs-kyc:
+- Validation des vars d'env au startup (zod)

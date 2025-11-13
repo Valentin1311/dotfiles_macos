@@ -1,0 +1,7 @@
+kyc service
+sfs kyc
+spendesk
+app desktop
+sfs backoffice
+sfs backoffice gateway
+sfs api gtw

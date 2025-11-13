@@ -1,0 +1,43 @@
+[window]
+decorations = "buttonless"
+opacity = 0.92
+blur = true
+startup_mode = "Windowed"
+dynamic_title = true
+padding = { x = 10, y = 10 }
+
+[font]
+normal = { family = "JetBrainsMono Nerd Font", style = "Regular" }
+size = 13.0
+
+# Catppuccin Latte (light)
+[colors.primary]
+background = "#eff1f5"
+foreground = "#4c4f69"
+
+[colors.normal]
+black   = "#5c5f77"
+red     = "#d20f39"
+green   = "#40a02b"
+yellow  = "#df8e1d"
+blue    = "#1e66f5"
+magenta = "#ea76cb"
+cyan    = "#179299"
+white   = "#acb0be"
+
+[colors.bright]
+black   = "#6c6f85"
+red     = "#d20f39"
+green   = "#40a02b"
+yellow  = "#df8e1d"
+blue    = "#1e66f5"
+magenta = "#ea76cb"
+cyan    = "#179299"
+white   = "#bcc0cc"
+
+[env]
+TERM = "xterm-256color"
+
+[cursor]
+style = "Beam"
+unfocused_hollow = true
