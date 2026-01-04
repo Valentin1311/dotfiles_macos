@@ -15,9 +15,9 @@ fi
 
 export MANPAGER='nvim +Man!'
 export KUBE_EDITOR="nvim"
-export EDITOR="nvim"
+#export EDITOR="nvim"
 
-export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+export PATH="$HOME/.local/bin:${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 # My aliases
 alias k="kubectl"
@@ -42,7 +42,23 @@ zd() {
   fi
 }
 
+export VISUAL="nvim"
+# Avoid neovim instance nesting
+if [[ -n "$NVIM" ]]; then
+  if [ -x "$(command -v nvr)" ]; then
+    alias nvim="nvr"
+    export VISUAL="nvr --remote-wait +'set bufhidden=wipe'"
+  else
+    alias nvim='echo "No nesting, install nvr !"'
+  fi
+fi
+
 v() { if [ "$#" -eq 0 ]; then nvim .; else nvim "$@"; fi; }
+
+theme() { sh ~/.config/theme-toggle.sh; }
+
+# GPG
+export GPG_TTY=$(tty)
 
 # fnm
 FNM_PATH="/opt/homebrew/opt/fnm/bin"
@@ -50,7 +66,6 @@ if [ -d "$FNM_PATH" ]; then
   eval "`fnm env`"
 fi
 
-theme() { sh ~/.local/bin/theme-toggle.sh; }
-
-# GPG
-export GPG_TTY=$(tty)
+export NPM_TOKEN=<NPM_TOKEN>
+export GH_TOKEN="$(gh auth token)"
+export LOKALISE_API_TOKEN="LOKALISE_API_TOKEN"

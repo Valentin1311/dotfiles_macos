@@ -103,3 +103,15 @@ automatically-unhide-macos-hidden-apps = true
 [[on-window-detected]]
     if.app-id = 'com.apple.systempreferences'
     run = 'layout tiling'
+
+[[on-window-detected]]
+    if.app-id = 'org.postgresql.pgadmin4'
+    run = ['layout tiling', 'move-node-to-workspace 1']
+
+[[on-window-detected]]
+    if.app-id = 'com.docker.docker'
+    run = ['layout tiling', 'move-node-to-workspace 4']
+
+[[on-window-detected]]
+    if.app-id = 'com.postmanlabs.mac'
+    run = ['layout tiling', 'move-node-to-workspace 4']
